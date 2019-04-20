@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                  <a class="navbar-brand" href="#">Off The Top News Site</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Navigate
+                      </a>
+                        <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+                        <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Home Page</a>
+                          <a class="dropdown-item" href="#">Saved</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+    <header>
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+        </video>
+        <div class="container h-100">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100 text-white">
+                    <h1 class="display-3">Off The Top Posts</h1>
+                    <p class="lead mb-0">Posts are from https://www.reddit.com/r/ProgrammerHumor/</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+
+            <!-- Page Heading -->
+            <h1 class="my-4">Posts
+              <small>from hot page</small>
+              <a class="btn btn-primary" id="load" href="#">Load</a>
+            </h1>
+            <ul>
+              {{#each posts}}
+                {{> posts/post-block}}
+              {{/each}}
+            </ul>
+      
+          </div>
