@@ -51,10 +51,8 @@ app.get("/", function(req, res) {
       var link = $(element).children().attr("href");
 
       var passObject = {
-        posts: {
           title: title,
           link: link
-        }
       };
 
       // Save these results in an object that we'll push into the results array we defined earlier
