@@ -58,7 +58,10 @@ app.get("/", function(req, res) {
       // Save these results in an object that we'll push into the results array we defined earlier
       posts.push(passObject);
     });
-    res.render("index", posts);
+    var postObj = {
+      posts: posts
+    };
+    res.render("index", postObj);
   });
 
 });
