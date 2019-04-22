@@ -6,6 +6,9 @@ header {
   width: 100%;
   overflow: hidden;
 }
+.loadS {
+  margin-left: 10px;
+}
 @media (min-width: 992px) {
     .animate {
       animation-duration: 0.3s;
