@@ -1,14 +1,18 @@
 // Dependencies
 var express = require("express");
 var exphbs = require("express-handlebars");
-var mongojs = require("mongojs");
+var logger = require('morgan');
 // Require axios and cheerio. This makes the scraping possible
 var axios = require("axios");
 var cheerio = require("cheerio");
-
+var mongoose = require("mongoose");
+var db = require("./models");
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
+
+app.use(logger('dev'));
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -16,15 +20,9 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static(__dirname + "/public"));
 
-// Database configuration
-var databaseUrl = "scraper";
-var collections = ["posts"];
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/off-the-top');
 
-// Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
-db.on("error", function (error) {
-  console.log("Database Error:", error);
-});
+// Database configuratio
 
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -88,7 +86,7 @@ app.get("/all", function (req, res) {
 
 app.post("/save", function (req, res) {
   // Insert the note into the notes collection
-  db.posts.insert(req.body, function (error, saved) {
+  db.posts.create(req.body, function (error, saved) {
     // Log any errors
     if (error) {
       console.log(error);
@@ -108,7 +106,7 @@ app.post("/update", function (req, res) {
   // Update the note that matches the object id
   db.posts.update(
     {
-      title: req.params.title
+      title: req.body.title
     },
     {
       // Set the title, note and modified parameters
@@ -156,6 +154,6 @@ app.post("/delete", function (req, res) {
 });
 
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
   console.log("App running on port 3000!");
 });
